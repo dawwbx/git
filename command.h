@@ -1,0 +1,1 @@
+extern int command_main(int argc, char **argv);
