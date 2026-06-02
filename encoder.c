@@ -84,3 +84,29 @@ void Encoder_Reset(void)
     last_cnt_3 = __HAL_TIM_GET_COUNTER(&ENCODER_TIM_3);
     last_cnt_4 = __HAL_TIM_GET_COUNTER(&ENCODER_TIM_4);
 }
+
+
+
+/**
+ * @brief 将编码器的累计脉冲转换为电机的真实行驶距离
+ * @param encoder_count 对应轮子的累计值 (例如 motor_encoder_1)
+ * @return 真实行驶距离 (单位：米)，带正负号
+ */
+float Get_Motor_Distance(int32_t encoder_count) 
+{
+    return ((float)encoder_count / WHEEL_TICKS_PER_REV) * WHEEL_CIRCUMFERENCE_CM;
+}
+
+/**
+ * @brief 计算电机的实时线速度 (适合放在 125Hz 控制中断里)
+ * @param tick_delta 两次读取之间的脉冲差值 (当前值 - 上次值)
+ * @param dt 两次读取的时间间隔 (125Hz 对应 0.008s)
+ * @return 真实线速度 (单位：米/秒)
+ */
+float Get_Motor_Velocity(int16_t tick_delta, float dt)
+{
+    // 先算出 dt 时间内的距离增量
+    float distance_delta = ((float)tick_delta / WHEEL_TICKS_PER_REV) * WHEEL_CIRCUMFERENCE_CM;
+    // 速度 = 距离 / 时间
+    return distance_delta / dt;
+}

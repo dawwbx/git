@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"c:/Users/pc/Desktop/\" | grep -i k230)",
+      "Read(//c/Users/pc/Desktop/**)",
+      "WebFetch(domain:www.kendryte.com)",
+      "WebSearch",
+      "Bash(python -c \"import cv2; print\\('cv2:', cv2.__version__\\)\")",
+      "Bash(python -c \"import numpy; print\\('numpy:', numpy.__version__\\)\")",
+      "Bash(python 1_auto_label.py)",
+      "Bash(pip install *)",
+      "Bash(labelImg --help)",
+      "Bash(grep -n \"spawn\" \"C:/Users/pc/AppData/Local/Programs/Python/Python314/Lib/site-packages/labelImg/labelImg.py\")",
+      "Read(//c/Users/pc/AppData/Local/Programs/Python/Python314/Lib/site-packages/labelImg/**)",
+      "Bash(python -c \"from labelImg.labelImg import main; print\\('import OK'\\)\")",
+      "Bash(timeout 3 labelImg \"dataset/images\" \"dataset/labels.txt\" \"dataset/xml\")",
+      "Bash(echo \"---exit code $?---\")",
+      "Read(//c/Users/pc/AppData/Local/Programs/Python/Python314/Scripts/**)",
+      "Bash(timeout 3 python -m labelImg)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(timeout 3 \"C:/Users/pc/AppData/Local/Programs/Python/Python314/Scripts/labelImg.exe\")",
+      "Bash(python 3_pack_for_aicube.py)",
+      "Bash(pip uninstall *)",
+      "Bash(python -c \"import config; print\\('classes:', config.class_names\\(\\)\\); print\\('paths OK:', config.INPUT_DIR, '->', config.OUTPUT_DIR\\)\")",
+      "Bash(python -c \"import importlib; [importlib.import_module\\(m\\) for m in ['config']]; print\\('---'\\); exec\\(open\\('1_auto_label.py', encoding='utf-8'\\).read\\(\\).replace\\('if __name__', 'if False and __name__'\\)\\); print\\('1_auto_label imports OK'\\)\")",
+      "Bash(python -c \"exec\\(open\\('4_labelfix.py', encoding='utf-8'\\).read\\(\\).replace\\('if __name__', 'if False and __name__'\\)\\); print\\('labelfix OK'\\)\")",
+      "Bash(python -c \"exec\\(open\\('3_pack_for_aicube.py', encoding='utf-8'\\).read\\(\\).replace\\('if __name__', 'if False and __name__'\\)\\); print\\('pack OK'\\)\")",
+      "Bash(python -c \"import subprocess; r = subprocess.run\\(['python', '-c', 'import sys; sys.path.insert\\(0,\\\\\".\\\\\"\\); import importlib.util; s = importlib.util.spec_from_file_location\\(\\\\\"m\\\\\", \\\\\"3_pack_for_aicube.py\\\\\"\\); m = importlib.util.module_from_spec\\(s\\); s.loader.exec_module\\(m\\); print\\(\\\\\"pack OK, OUTPUT_ZIP=\\\\\", m.OUTPUT_ZIP\\)'], capture_output=True, text=True\\); print\\(r.stdout\\); print\\(r.stderr\\)\")",
+      "Bash(ls \"C:\\\\Users\\\\pc\\\\Desktop\\\\ppp\" 2>/dev/null || ls \"C:\\\\Users\\\\pc\\\\Desktop\\\\\" | grep -i ppp)",
+      "Read(//c/Users/pc/**)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)"
+    ]
+  }
+}

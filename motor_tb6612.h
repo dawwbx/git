@@ -26,7 +26,7 @@
 #define MOTOR3 TIM_CHANNEL_3
 #define MOTOR4 TIM_CHANNEL_4
 
-#define MOTOR_MAX 7200
+#define MOTOR_MAX 20000
 #define MOTOR_MIN 0
 
 #define MOTOR1_R() do { \

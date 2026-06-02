@@ -8,10 +8,18 @@ void motor_init(void)
     HAL_TIM_PWM_Start(&MOTOR1_TIM,MOTOR1);
     // 启动电机2的PWM输出
     HAL_TIM_PWM_Start(&MOTOR2_TIM,MOTOR2);
+	   // 启动电机3的PWM输出
+    HAL_TIM_PWM_Start(&MOTOR3_TIM,MOTOR3);
+    // 启动电机4的PWM输出
+    HAL_TIM_PWM_Start(&MOTOR4_TIM,MOTOR4);
     // 设置电机1的速度为0
     motor_set(1,0);
     // 设置电机2的速度为0
     motor_set(2,0);
+		// 设置电机3的速度为0
+    motor_set(3,0);
+    // 设置电机4的速度为0
+    motor_set(4,0);
 }
 
 void motor_set(uint8_t motor, int16_t speed) {
@@ -50,35 +58,35 @@ void motor_set(uint8_t motor, int16_t speed) {
             break;
         case 2:
             // 电机2正转
-            if (direction == 1) {
+            if (direction == -1) {
                 MOTOR2_R(); 
             // 电机2反转
-            } else if (direction == -1) {
+            } else if (direction == 1) {
                 MOTOR2_L(); 
             }
             // 设置电机2的PWM占空比
             __HAL_TIM_SetCompare(&MOTOR2_TIM, MOTOR2, speed);
             break;
 				case 3:
-            // 电机2正转
-            if (direction == 1) {
+            // 电机3正转
+            if (direction == -1) {
                 MOTOR3_R(); 
-            // 电机2反转
-            } else if (direction == -1) {
+            // 电机3反转
+            } else if (direction == 1) {
                 MOTOR3_L(); 
             }
-            // 设置电机2的PWM占空比
+            // 设置电机3的PWM占空比
             __HAL_TIM_SetCompare(&MOTOR3_TIM, MOTOR3, speed);
             break;
 				case 4:
-            // 电机2正转
+            // 电机4正转
             if (direction == 1) {
                 MOTOR4_R(); 
-            // 电机2反转
+            // 电机4反转
             } else if (direction == -1) {
                 MOTOR4_L(); 
             }
-            // 设置电机2的PWM占空比
+            // 设置电机4的PWM占空比
             __HAL_TIM_SetCompare(&MOTOR4_TIM, MOTOR4, speed);
             break;
         default:
